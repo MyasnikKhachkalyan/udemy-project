@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {filter, switchMap, tap} from 'rxjs/operators';
-import {RecipesService} from '../../../services/recipes.service';
-import {RecipeModel} from '../../../../../models/recipe.model';
+import {RecipesService} from '../../services/recipes.service';
+import {RecipeModel} from '../../../../models/recipe.model';
 import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
-import { Recipe, RecipeModel } from '../../../../../models/recipe.model';
+import { Recipe, RecipeModel } from '../../../../models/recipe.model';
 import {Observable} from 'rxjs';
-import {RecipesService} from '../../../services/recipes.service';
+import {RecipesService} from '../../services/recipes.service';
 import {tap} from 'rxjs/operators';
 
 @Component({

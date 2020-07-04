@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RecipeModel} from '../../../../../models/recipe.model';
-import {RecipesService} from '../../../services/recipes.service';
+import {RecipeModel} from '../../../../models/recipe.model';
+import {RecipesService} from '../../services/recipes.service';
 import {map, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {ShoppingListService} from '../../../services/shopping-list.service';
+import {ShoppingListService} from '../../services/shopping-list.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({

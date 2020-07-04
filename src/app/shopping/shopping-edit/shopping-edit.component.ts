@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {IngredientModel} from '../../../../../models/ingredient.model';
-import {ShoppingListService} from '../../../services/shopping-list.service';
+import {IngredientModel} from '../../../../models/ingredient.model';
+import {ShoppingListService} from '../../services/shopping-list.service';
 import {filter, tap} from 'rxjs/operators';
 
 @Component({

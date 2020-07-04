@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageShellComponent} from './page-shell.component';
-import {ShoppingListComponent} from './shopping/shopping-list/shopping-list.component';
+import {ShoppingListComponent} from '../shopping/shopping-list/shopping-list.component';
 import {RecipesResolverService} from '../services/recipes.resolver.service';
 
 const routes: Routes = [
@@ -11,11 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: 'shopping-list',
-        component: ShoppingListComponent
+        loadChildren: () => import('../shopping/shopping.module').then((m) => m.ShoppingModule)
       },
       {
         path: 'recipes',
-        loadChildren: () => import('./recipes/recipes.module').then((m) => m.RecipesModule),
+        loadChildren: () => import('../recipes/recipes.module').then((m) => m.RecipesModule),
         resolve: {
           recipeList: RecipesResolverService
         }

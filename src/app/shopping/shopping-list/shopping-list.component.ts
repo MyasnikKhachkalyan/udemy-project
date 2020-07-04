@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Ingredient, IngredientModel} from '../../../../../models/ingredient.model';
-import {ShoppingListService} from '../../../services/shopping-list.service';
+import {Ingredient, IngredientModel} from '../../../../models/ingredient.model';
+import {ShoppingListService} from '../../services/shopping-list.service';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 

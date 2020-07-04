@@ -7,8 +7,9 @@ import {NotLoggedInGuard} from './services/not-logged-in.guard';
 const routes: Routes = [
   {
     path: 'auth',
-    component: AuthComponent,
-    canActivate: [NotLoggedInGuard]
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    canActivate: [NotLoggedInGuard],
+    canLoad: [NotLoggedInGuard]
   },
   {
     path: '',

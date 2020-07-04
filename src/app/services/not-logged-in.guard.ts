@@ -18,13 +18,27 @@ import {User} from '../../../models/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class NotLoggedInGuard implements CanActivate {
+export class NotLoggedInGuard implements CanActivate, CanLoad {
   constructor(private readonly authService: AuthService, private readonly router: Router) {
   }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.authService.userData.pipe(
+      take(1),
+      map(user => {
+        const isAuth = !!user;
+        if (!isAuth) {
+          return true;
+        }
+        this.router.navigate(['/', 'recipes']);
+        return false;
+      })
+    );
+  }
+
+  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.userData.pipe(
       take(1),
       map(user => {
