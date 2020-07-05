@@ -1,9 +1,12 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Router} from '@angular/router';
+
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
+
 import {User} from '../../../models/user.model';
-import {Router} from '@angular/router';
+import { environment } from '../../environments/environment';
 
 export interface SignUpRespModel {
   idToken: string;
@@ -24,7 +27,7 @@ export class AuthService {
 
   signUp(credentials: {email: string; password: string}): Observable<SignUpRespModel> {
     return this.http.post<SignUpRespModel>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB-IJFjW_M-_20e38oa5u6McOFtvlKSMhc',
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseApiKey,
       { ...credentials, returnSecureToken: true }).pipe(
         catchError(this.errorHandler),
         tap((data) => this.handleAuth(data))
@@ -33,7 +36,7 @@ export class AuthService {
 
   signIn(credentials: {email: string; password: string}): Observable<SignUpRespModel> {
     return this.http.post<SignUpRespModel>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB-IJFjW_M-_20e38oa5u6McOFtvlKSMhc',
+      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseApiKey,
       { ...credentials, returnSecureToken: true }).pipe(
         catchError(this.errorHandler),
         tap((data) => this.handleAuth(data))

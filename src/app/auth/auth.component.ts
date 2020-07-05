@@ -30,10 +30,7 @@ export class AuthComponent implements OnInit {
   }
 
   switchMode() {
-    // this.isInLoginMode = !this.isInLoginMode;
-    const modalRef = this.modalService.open<null, AlertComponent>(AlertComponent , { });
-
-    modalRef.afterClose.subscribe(() => console.log('closed'));
+    this.isInLoginMode = !this.isInLoginMode;
   }
 
   onSubmit() {
