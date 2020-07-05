@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService, SignUpRespModel} from '../services/auth.service';
 import {Observable} from 'rxjs';
+import {LoaderService} from '../shared/loader/loader.service';
+import {finalize} from 'rxjs/operators';
+import {ModalService} from '../shared/modal/modal.service';
+import {AlertComponent} from '../shared/alert/alert/alert.component';
 
 @Component({
   selector: 'app-auth',
@@ -18,13 +22,18 @@ export class AuthComponent implements OnInit {
   isLoading = false;
   errorMessage = null;
 
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService,
+              private readonly loaderService: LoaderService,
+              private readonly modalService: ModalService) { }
 
   ngOnInit(): void {
   }
 
   switchMode() {
-    this.isInLoginMode = !this.isInLoginMode;
+    // this.isInLoginMode = !this.isInLoginMode;
+    const modalRef = this.modalService.open<null, AlertComponent>(AlertComponent , { });
+
+    modalRef.afterClose.subscribe(() => console.log('closed'));
   }
 
   onSubmit() {
@@ -39,8 +48,10 @@ export class AuthComponent implements OnInit {
     } else {
       obs = this.authService.signUp(this.mainForm.value);
     }
-
-    obs.subscribe(
+    this.loaderService.showLoader();
+    obs.pipe(
+      finalize(() => this.loaderService.hideLoader())
+    ).subscribe(
       (res) => {
         console.log(res);
       }, ((error) => {

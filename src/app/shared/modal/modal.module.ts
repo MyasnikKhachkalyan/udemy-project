@@ -10,6 +10,9 @@ import { ModalComponent } from './modal/modal.component';
   imports: [
     CommonModule
   ],
+  entryComponents: [
+    ModalComponent
+  ],
   providers: [ ModalService ]
 })
 export class ModalModule { }
